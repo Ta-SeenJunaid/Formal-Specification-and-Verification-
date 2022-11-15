@@ -9,16 +9,10 @@ active [2] proctype Server () {
         od
 }
 
-active proctype Client0 () {
-    byte msg; chan reply = [0] of { byte };
-    request ! 0, reply;
+active [5] proctype Client() {
+    byte msg; 
+    chan reply = [0] of { byte };
+    request ! _pid, reply;
     reply ? msg;
-    printf("Client O msg: %d\n", msg);
-}
-
-active proctype Client1 () {
-    byte msg; chan reply = [0] of { byte };
-    request ! 1, reply;
-    reply ? msg;
-    printf("Client 1 msg: %d\n", msg);
+    printf("Client %d msg: %d\n", _pid, msg);
 }
