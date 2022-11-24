@@ -1,0 +1,32 @@
+# 0 "FourPointEignt.pml"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 0 "<command-line>" 2
+# 1 "FourPointEignt.pml"
+
+
+mtype = {number, eof}
+chan ourchannel = [10] of {mtype, int }
+
+active proctype P() {
+
+
+    int i=0;
+    do
+    ::i<10 -> i++; ourchannel!number(i);
+    ::i>=10 -> ourchannel!eof(0);break
+    od
+}
+
+active proctype Q() {
+
+
+    int i=0
+    int n
+
+    do
+    ::ourchannel?number(n);printf("%d\n",n)
+    ::ourchannel?eof(0) -> break
+    od
+}
